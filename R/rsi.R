@@ -1,11 +1,20 @@
+#' calculates the relative strength index (RSI) of a numeric vector
+#'
+#' @param DAYS the number of days used to calculate the RSI
+#' @param CHANGE a numeric vector of daily price changes
+#'
+#' @return numeric
+
+
+
 rsi <- function(DAYS, CHANGE){
-  
+
   U <- CHANGE
   U[which(U < 0)] <- 0
-  
+
   D <- -CHANGE
   D[which(D < 0)] <- 0
-  
+
   wilder_smooth <- function(DAYS, SER){
     total <- length(SER)
     out <- rep(NA, total)
@@ -15,11 +24,11 @@ rsi <- function(DAYS, CHANGE){
     }
     return(out)
   }
-  
+
   AU <- wilder_smooth(DAYS, U)
   AD <- wilder_smooth(DAYS, D)
-  
+
   RS = AU / AD
-  
+
   return(100 - (100 / (1 + RS)))
 }
