@@ -6,10 +6,10 @@
 
 
 import_yfinance_file <- function(FILE){
-  data <- read.csv("FILE")
+  data <- read.csv(FILE)
 
   data <- janitor::clean_names(data)
-  data$date <- lubridate::mdy(data$date)
+  data$date <- lubridate::ymd(data$date)
 
   prev_day <- c(NA, data$close[1: (nrow(data) - 1)])
 

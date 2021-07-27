@@ -10,7 +10,7 @@ moving_average <- function(DAYS, SERIES){
   ma <- rep(NA, total)
   ma_len <- DAYS - 1
   for(i in DAYS: total){
-    ma[i] <- mean(SERIES[i: (i - ma_len)], na.rm = T)
+    ma[i] <- mean(SERIES[(i - ma_len): i], na.rm = T)
   }
   return(ma)
 }
